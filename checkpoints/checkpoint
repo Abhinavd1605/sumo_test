@@ -1,0 +1,2 @@
+model_checkpoint_path: "dnlight_ep450"
+all_model_checkpoint_paths: "dnlight_ep450"
