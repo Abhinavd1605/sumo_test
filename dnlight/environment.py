@@ -16,7 +16,7 @@ from typing import Tuple, Dict, List, Optional
 import traci
 import traci.constants as tc
 
-from dnlight.reward import compute_total_reward
+from dnlight.reward import compute_total_reward, compute_green_reward
 
 # Constants from spec
 DETECTION_RANGE = 200.0   # metres
@@ -43,7 +43,9 @@ class SumoEnvironment:
                  step_duration: int = STEP_DURATION,
                  yellow_duration: int = YELLOW_DURATION,
                  max_steps: int = SIM_LENGTH,
-                 label: str = "default"):
+                 label: str = "default",
+                 use_green_reward: bool = False,
+                 alpha_co2: float = 0.3):
         """
         Args:
             sumocfg_path: Path to .sumocfg file.
@@ -52,6 +54,8 @@ class SumoEnvironment:
             yellow_duration: Yellow phase duration in seconds.
             max_steps: Maximum simulation time in seconds.
             label: TraCI connection label.
+            use_green_reward: If True, use CO2-penalized green reward.
+            alpha_co2: Weight for CO2 penalty in green reward.
         """
         self.sumocfg_path = os.path.abspath(sumocfg_path)
         self.use_gui = use_gui
@@ -59,6 +63,8 @@ class SumoEnvironment:
         self.yellow_duration = yellow_duration
         self.max_steps = max_steps
         self.label = label
+        self.use_green_reward = use_green_reward
+        self.alpha_co2 = alpha_co2
 
         self.sumo_binary = "sumo-gui" if use_gui else "sumo"
         self.conn = None  # traci connection
@@ -97,6 +103,7 @@ class SumoEnvironment:
             "--waiting-time-memory", "1000",
             "--no-warnings", "true",
             "--start", "true",
+            "--random", "true",
         ]
 
         traci.start(sumo_cmd, label=self.label)
@@ -197,9 +204,10 @@ class SumoEnvironment:
         self._simulate(self.step_duration)
         self._phase_duration += self.step_duration
 
-        # Get state and reward
+        # Get state, emissions, and reward
         state = self._get_state()
-        reward = self._compute_reward()
+        emissions = self._get_emissions()
+        reward = self._compute_reward(emissions)
         done = self.sim_step >= self.max_steps
 
         # Info dict
@@ -207,6 +215,7 @@ class SumoEnvironment:
         info['num_vehicles'] = traci.vehicle.getIDCount()
         info['phase'] = self.current_phase
         info['reward'] = reward
+        info['emissions'] = emissions
 
         return state, reward, done, info
 
@@ -320,8 +329,36 @@ class SumoEnvironment:
 
         return np.array(state, dtype=np.float32)
 
-    def _compute_reward(self) -> float:
-        """Compute the DNLight dynamic reward."""
+    def _get_emissions(self) -> Dict:
+        """
+        Get current emission metrics from all incoming lanes.
+
+        Returns:
+            Dict with CO2, NOx, fuel consumption, and PM emissions.
+        """
+        total_co2 = 0.0
+        total_nox = 0.0
+        total_fuel = 0.0
+        total_pmx = 0.0
+
+        for lane_id in self.incoming_lanes:
+            try:
+                total_co2 += traci.lane.getCO2Emission(lane_id)
+                total_nox += traci.lane.getNOxEmission(lane_id)
+                total_fuel += traci.lane.getFuelConsumption(lane_id)
+                total_pmx += traci.lane.getPMxEmission(lane_id)
+            except Exception:
+                pass
+
+        return {
+            'co2_mg_per_s': total_co2,
+            'nox_mg_per_s': total_nox,
+            'fuel_ml_per_s': total_fuel,
+            'pmx_mg_per_s': total_pmx,
+        }
+
+    def _compute_reward(self, emissions: Optional[Dict] = None) -> float:
+        """Compute the DNLight dynamic reward (optionally with green penalty)."""
         lane_wait_times = []
         emv_vehicles = []
         social_vehicles = []
@@ -352,7 +389,6 @@ class SumoEnvironment:
                 if vtype in ("ambulance", "fire_truck", "police"):
                     total_emv_count += 1
                     total_time_loss += time_loss
-                    # Approximate travel time from departure
                     try:
                         depart = traci.vehicle.getDeparture(vid)
                         travel_time = self.sim_step - depart if depart >= 0 else 0
@@ -364,7 +400,7 @@ class SumoEnvironment:
                         'wait_time': wait,
                         'avg_speed': max(speed, 0.1),
                         'time_loss': time_loss,
-                        'n_emv': 0,       # will be set below
+                        'n_emv': 0,
                         'n_total': 0,
                         'total_time_loss': 0,
                     })
@@ -385,11 +421,18 @@ class SumoEnvironment:
 
         # Lane-level aggregate data for social reward
         lane_data = self._compute_lane_data()
-
         lane_wt_array = np.array(lane_wait_times, dtype=np.float32)
-        reward = compute_total_reward(
-            lane_wt_array, emv_vehicles, social_vehicles, lane_data
-        )
+
+        # Choose reward function
+        if self.use_green_reward and emissions is not None:
+            reward = compute_green_reward(
+                lane_wt_array, emv_vehicles, social_vehicles,
+                lane_data, emissions, alpha_co2=self.alpha_co2
+            )
+        else:
+            reward = compute_total_reward(
+                lane_wt_array, emv_vehicles, social_vehicles, lane_data
+            )
 
         return float(reward)
 
@@ -442,4 +485,406 @@ class SumoEnvironment:
 
     def get_action_dim(self) -> int:
         """Return the number of actions."""
+        return self.num_phases
+
+
+class MultiIntersectionEnv:
+    """
+    Multi-intersection environment for DNLight + Green AI.
+
+    Manages a 2x2 grid of signalized intersections. Each intersection
+    has its own state/action space, and neighbor information is shared
+    via the state vector's neighbor_info field.
+    """
+
+    def __init__(self,
+                 sumocfg_path: str,
+                 use_gui: bool = False,
+                 step_duration: int = STEP_DURATION,
+                 yellow_duration: int = YELLOW_DURATION,
+                 max_steps: int = SIM_LENGTH,
+                 label: str = "multi",
+                 use_green_reward: bool = True,
+                 alpha_co2: float = 0.3):
+        self.sumocfg_path = os.path.abspath(sumocfg_path)
+        self.use_gui = use_gui
+        self.step_duration = step_duration
+        self.yellow_duration = yellow_duration
+        self.max_steps = max_steps
+        self.label = label
+        self.use_green_reward = use_green_reward
+        self.alpha_co2 = alpha_co2
+        self.sumo_binary = "sumo-gui" if use_gui else "sumo"
+
+        self.tls_ids = []  # populated on reset
+        self.tls_data = {}  # per-TLS: lanes, phases, state
+
+        self.features_per_lane = 7
+        self.sim_step = 0
+        self.episode = 0
+        self.state_dim = None
+        self.num_phases = 4
+
+    @property
+    def action_dim(self) -> int:
+        return self.num_phases
+
+    @property
+    def num_intersections(self) -> int:
+        return len(self.tls_ids)
+
+    def reset(self) -> Dict[str, np.ndarray]:
+        """
+        Reset simulation. Returns dict of {tls_id: state_array}.
+        """
+        try:
+            traci.close()
+        except Exception:
+            pass
+
+        sumo_cmd = [
+            self.sumo_binary,
+            "-c", self.sumocfg_path,
+            "--no-step-log", "true",
+            "--waiting-time-memory", "1000",
+            "--no-warnings", "true",
+            "--start", "true",
+            "--random", "true",
+        ]
+        traci.start(sumo_cmd, label=self.label)
+
+        self.tls_ids = sorted(traci.trafficlight.getIDList())
+        self.tls_data = {}
+
+        for tls_id in self.tls_ids:
+            lanes = sorted(set(
+                traci.trafficlight.getControlledLanes(tls_id)
+            ))
+            logic = traci.trafficlight.getAllProgramLogics(tls_id)
+            state_len = len(logic[0].phases[0].state) if logic else 16
+
+            # Build 4 green phases (same logic as single intersection)
+            if state_len == 16:
+                green_states = [
+                    'GGrgrrrrGGrgrrrr',
+                    'rrGgrrrrrrGgrrrr',
+                    'rrrrGGrgrrrrGGrg',
+                    'rrrrrrGgrrrrrrGg',
+                ]
+            else:
+                half = state_len // 2
+                green_states = [
+                    'G' * half + 'r' * (state_len - half),
+                    'r' * half + 'G' * (state_len - half),
+                    'G' * half + 'r' * (state_len - half),
+                    'r' * half + 'G' * (state_len - half),
+                ]
+
+            self.tls_data[tls_id] = {
+                'lanes': lanes,
+                'state_len': state_len,
+                'green_states': green_states,
+                'current_phase': 0,
+            }
+
+            # Apply initial green
+            traci.trafficlight.setRedYellowGreenState(
+                tls_id, green_states[0]
+            )
+
+        # Set state dim from first TLS
+        if self.tls_ids:
+            first = self.tls_data[self.tls_ids[0]]
+            self.state_dim = len(first['lanes']) * self.features_per_lane
+
+        self.sim_step = 0
+        self.episode += 1
+
+        return self._get_all_states()
+
+    def step(self, actions: Dict[str, int]
+             ) -> Tuple[Dict[str, np.ndarray], Dict[str, float],
+                        bool, Dict]:
+        """
+        Step all intersections simultaneously.
+
+        Args:
+            actions: {tls_id: action_index}
+
+        Returns:
+            (states_dict, rewards_dict, done, info)
+        """
+        # Apply yellow and green for each intersection
+        for tls_id, action in actions.items():
+            data = self.tls_data[tls_id]
+            action = int(np.clip(action, 0, self.num_phases - 1))
+
+            if action != data['current_phase']:
+                # Yellow
+                green = data['green_states'][data['current_phase']]
+                yellow = green.replace('G', 'y').replace('g', 'y')
+                traci.trafficlight.setRedYellowGreenState(tls_id, yellow)
+
+        # Simulate yellow
+        self._simulate(self.yellow_duration)
+
+        # Apply green phases
+        for tls_id, action in actions.items():
+            data = self.tls_data[tls_id]
+            action = int(np.clip(action, 0, self.num_phases - 1))
+            traci.trafficlight.setRedYellowGreenState(
+                tls_id, data['green_states'][action]
+            )
+            data['current_phase'] = action
+
+        # Simulate green
+        self._simulate(self.step_duration)
+
+        # Collect results
+        states = self._get_all_states()
+        emissions = self._get_all_emissions()
+        rewards = self._compute_all_rewards(emissions)
+        done = self.sim_step >= self.max_steps
+
+        info = {
+            'sim_step': self.sim_step,
+            'num_vehicles': traci.vehicle.getIDCount(),
+            'emissions': emissions,
+        }
+
+        return states, rewards, done, info
+
+    def _simulate(self, duration: int):
+        for _ in range(duration):
+            traci.simulationStep()
+            self.sim_step += 1
+
+    def _get_all_states(self) -> Dict[str, np.ndarray]:
+        """Get state vectors for all intersections."""
+        states = {}
+        # Compute neighbor queue info for neighbor_info field
+        neighbor_queues = {}
+        for tls_id in self.tls_ids:
+            total_q = 0.0
+            for lane_id in self.tls_data[tls_id]['lanes']:
+                try:
+                    total_q += traci.lane.getLastStepHaltingNumber(lane_id)
+                except Exception:
+                    pass
+            neighbor_queues[tls_id] = total_q
+
+        for tls_id in self.tls_ids:
+            data = self.tls_data[tls_id]
+            state = []
+
+            try:
+                tls_state = traci.trafficlight.getRedYellowGreenState(tls_id)
+                ctrl_lanes = traci.trafficlight.getControlledLanes(tls_id)
+            except Exception:
+                tls_state = ""
+                ctrl_lanes = []
+
+            # Average neighbor queue (excluding self)
+            other_queues = [v for k, v in neighbor_queues.items() if k != tls_id]
+            avg_neighbor_q = np.mean(other_queues) if other_queues else 0.0
+
+            for lane_id in data['lanes']:
+                # Phase
+                phase = 0.0
+                for ci, cl in enumerate(ctrl_lanes):
+                    if cl == lane_id and ci < len(tls_state):
+                        if tls_state[ci].lower() == 'g':
+                            phase = 1.0
+                            break
+
+                # Queue
+                try:
+                    halting = traci.lane.getLastStepHaltingNumber(lane_id)
+                    queue_length = halting * VEHICLE_LENGTH
+                except Exception:
+                    queue_length = 0.0
+
+                # Wait time
+                try:
+                    wait_time = traci.lane.getWaitingTime(lane_id)
+                except Exception:
+                    wait_time = 0.0
+
+                # EMV features
+                emv_presence = 0.0
+                emv_position = DETECTION_RANGE
+                emv_speed = 0.0
+                try:
+                    for vid in traci.lane.getLastStepVehicleIDs(lane_id):
+                        vtype = traci.vehicle.getTypeID(vid)
+                        if vtype in ("ambulance", "fire_truck", "police"):
+                            emv_presence = 1.0
+                            lane_len = traci.lane.getLength(lane_id)
+                            veh_pos = traci.vehicle.getLanePosition(vid)
+                            dist = max(lane_len - veh_pos, 0.0)
+                            if dist < emv_position:
+                                emv_position = dist
+                                emv_speed = traci.vehicle.getSpeed(vid)
+                except Exception:
+                    pass
+
+                # Neighbor info: normalized avg queue from neighbors
+                neighbor_info = avg_neighbor_q / 20.0
+
+                state.extend([
+                    phase,
+                    queue_length / DETECTION_RANGE,
+                    wait_time / 100.0,
+                    emv_presence,
+                    emv_position / DETECTION_RANGE,
+                    emv_speed / 20.0,
+                    neighbor_info,
+                ])
+
+            states[tls_id] = np.array(state, dtype=np.float32)
+
+        return states
+
+    def _get_all_emissions(self) -> Dict[str, Dict]:
+        """Get emission data for each intersection."""
+        emissions = {}
+        for tls_id in self.tls_ids:
+            co2 = nox = fuel = pmx = 0.0
+            for lane_id in self.tls_data[tls_id]['lanes']:
+                try:
+                    co2 += traci.lane.getCO2Emission(lane_id)
+                    nox += traci.lane.getNOxEmission(lane_id)
+                    fuel += traci.lane.getFuelConsumption(lane_id)
+                    pmx += traci.lane.getPMxEmission(lane_id)
+                except Exception:
+                    pass
+            emissions[tls_id] = {
+                'co2_mg_per_s': co2,
+                'nox_mg_per_s': nox,
+                'fuel_ml_per_s': fuel,
+                'pmx_mg_per_s': pmx,
+            }
+        return emissions
+
+    def _compute_all_rewards(self, emissions: Dict) -> Dict[str, float]:
+        """Compute reward for each intersection."""
+        rewards = {}
+        for tls_id in self.tls_ids:
+            data = self.tls_data[tls_id]
+            lane_wait_times = []
+            emv_vehicles = []
+            social_vehicles = []
+            total_vehicles = 0
+            total_emv_count = 0
+            total_time_loss = 0.0
+
+            for lane_id in data['lanes']:
+                try:
+                    lane_wait_times.append(
+                        traci.lane.getWaitingTime(lane_id)
+                    )
+                except Exception:
+                    lane_wait_times.append(0.0)
+
+            all_veh_ids = traci.vehicle.getIDList()
+            total_vehicles = len(all_veh_ids)
+
+            for vid in all_veh_ids:
+                try:
+                    # Only count vehicles on this TLS's lanes
+                    veh_lane = traci.vehicle.getLaneID(vid)
+                    if veh_lane not in data['lanes']:
+                        continue
+
+                    vtype = traci.vehicle.getTypeID(vid)
+                    wait = traci.vehicle.getAccumulatedWaitingTime(vid)
+                    speed = traci.vehicle.getSpeed(vid)
+                    time_loss = traci.vehicle.getTimeLoss(vid)
+
+                    if vtype in ("ambulance", "fire_truck", "police"):
+                        total_emv_count += 1
+                        total_time_loss += time_loss
+                        try:
+                            depart = traci.vehicle.getDeparture(vid)
+                            travel_time = (
+                                self.sim_step - depart if depart >= 0 else 0
+                            )
+                        except Exception:
+                            travel_time = 0
+                        emv_vehicles.append({
+                            'travel_time': travel_time,
+                            'wait_time': wait,
+                            'avg_speed': max(speed, 0.1),
+                            'time_loss': time_loss,
+                            'n_emv': 0, 'n_total': 0,
+                            'total_time_loss': 0,
+                        })
+                    else:
+                        social_vehicles.append({
+                            'wait_time': wait,
+                            'speed': max(speed, 0.01),
+                            'time_loss': time_loss,
+                        })
+                except Exception:
+                    continue
+
+            for v in emv_vehicles:
+                v['n_emv'] = total_emv_count
+                v['n_total'] = max(total_vehicles, 1)
+                v['total_time_loss'] = total_time_loss
+
+            lane_data = self._compute_lane_data_for(data['lanes'])
+            lane_wt_array = np.array(lane_wait_times, dtype=np.float32)
+
+            if self.use_green_reward:
+                reward = compute_green_reward(
+                    lane_wt_array, emv_vehicles, social_vehicles,
+                    lane_data, emissions.get(tls_id, {}),
+                    alpha_co2=self.alpha_co2
+                )
+            else:
+                reward = compute_total_reward(
+                    lane_wt_array, emv_vehicles, social_vehicles, lane_data
+                )
+
+            rewards[tls_id] = float(reward)
+
+        return rewards
+
+    def _compute_lane_data_for(self, lanes: List[str]) -> Dict:
+        """Compute aggregate lane stats for specific lanes."""
+        total_queue = 0.0
+        total_capacity = 0.0
+        total_flow = 0.0
+        speeds = []
+
+        for lane_id in lanes:
+            try:
+                halting = traci.lane.getLastStepHaltingNumber(lane_id)
+                total_queue += halting
+                total_capacity += traci.lane.getLength(lane_id) / VEHICLE_LENGTH
+                total_flow += traci.lane.getLastStepVehicleNumber(lane_id)
+                spd = traci.lane.getLastStepMeanSpeed(lane_id)
+                if spd >= 0:
+                    speeds.append(spd)
+            except Exception:
+                continue
+
+        return {
+            'queue_ratio': total_queue / max(total_capacity, 1.0),
+            'flow_rate': max(total_flow, 0.01),
+            'speed_variance': float(np.var(speeds)) if speeds else 0.0,
+            'throughput': max(total_flow, 0.01),
+        }
+
+    def close(self):
+        try:
+            traci.close()
+        except Exception:
+            pass
+
+    def get_state_dim(self) -> int:
+        return self.state_dim or 56
+
+    def get_action_dim(self) -> int:
         return self.num_phases

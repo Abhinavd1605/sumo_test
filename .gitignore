@@ -1,0 +1,13 @@
+# Logs
+logs/
+logs_*/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Checkpoints
+checkpoints/
+checkpoints_*/
+
+# Results

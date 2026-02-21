@@ -2,20 +2,24 @@
 <additional>
     <!-- Standard social vehicles -->
     <vType id="car" vClass="passenger" length="4.5" minGap="2.5" maxSpeed="16.67"
-           accel="2.6" decel="4.5" sigma="0.5" color="255,255,0"/>
+           accel="2.6" decel="4.5" sigma="0.5" color="255,255,0"
+           emissionClass="HBEFA3/PC_G_EU4"/>
 
     <!-- Emergency Vehicle Type 1: Ambulance -->
     <vType id="ambulance" vClass="emergency" length="6.5" minGap="2.5" maxSpeed="22.22"
            accel="3.0" decel="5.0" sigma="0.3" color="255,0,0"
-           speedFactor="1.2" impatience="1.0"/>
+           speedFactor="1.2" impatience="1.0"
+           emissionClass="HBEFA3/PC_G_EU4"/>
 
     <!-- Emergency Vehicle Type 2: Fire Truck -->
     <vType id="fire_truck" vClass="emergency" length="10.0" minGap="3.0" maxSpeed="19.44"
            accel="2.0" decel="4.0" sigma="0.3" color="255,69,0"
-           speedFactor="1.1" impatience="1.0"/>
+           speedFactor="1.1" impatience="1.0"
+           emissionClass="HBEFA3/PC_G_EU4"/>
 
     <!-- Emergency Vehicle Type 3: Police Car -->
     <vType id="police" vClass="emergency" length="4.8" minGap="2.5" maxSpeed="25.0"
            accel="3.5" decel="5.5" sigma="0.2" color="0,0,255"
-           speedFactor="1.3" impatience="1.0"/>
+           speedFactor="1.3" impatience="1.0"
+           emissionClass="HBEFA3/PC_G_EU4"/>
 </additional>

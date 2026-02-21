@@ -211,3 +211,50 @@ def compute_total_reward(lane_wait_times: np.ndarray,
 
     # Negate: lower penalties → higher (less negative) reward
     return -total
+
+
+def compute_green_reward(lane_wait_times: np.ndarray,
+                         emv_vehicles: List[Dict],
+                         social_vehicles: List[Dict],
+                         lane_data: Dict,
+                         emissions_data: Dict,
+                         alpha_co2: float = 0.3) -> float:
+    """
+    Compute the Green AI reward = DNLight reward - CO₂ penalty.
+
+    Extends the standard DNLight reward with an emission penalty term:
+        R_green = R_dnlight - alpha_co2 * (CO2_total / normalization)
+
+    Args:
+        lane_wait_times: Waiting times per lane.
+        emv_vehicles: EMV vehicle info dicts.
+        social_vehicles: Social vehicle info dicts.
+        lane_data: Aggregate lane statistics.
+        emissions_data: Dict with keys:
+            'co2_mg_per_s': total CO2 in mg/s across all lanes
+            'fuel_ml_per_s': total fuel consumption in ml/s
+            'nox_mg_per_s': total NOx in mg/s
+        alpha_co2: Weight for the CO2 penalty term.
+
+    Returns:
+        Green AI reward (negative value, higher is better).
+    """
+    # Base DNLight reward
+    base_reward = compute_total_reward(
+        lane_wait_times, emv_vehicles, social_vehicles, lane_data
+    )
+
+    # CO2 emission penalty
+    # Normalize: typical intersection ~50,000-200,000 mg/s under load
+    co2 = emissions_data.get('co2_mg_per_s', 0.0)
+    co2_normalized = co2 / 100_000.0
+
+    # Fuel consumption penalty (secondary)
+    fuel = emissions_data.get('fuel_ml_per_s', 0.0)
+    fuel_normalized = fuel / 50.0
+
+    # Combined emission penalty
+    emission_penalty = alpha_co2 * (co2_normalized + 0.5 * fuel_normalized)
+
+    return base_reward - emission_penalty
+
