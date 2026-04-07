@@ -1,0 +1,1167 @@
+DNLight Q-Table Simulation Log
+Checkpoint: checkpoints_multi_green_ext/dnlight_green_best
+Mode: Green AI
+Focus Intersection: C11
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 100 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 28m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 192.0s | EMV: No | CO2: 27.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8983.45    
+    Phase 1 (NS Left)              | Q-Value: -9627.01    
+    Phase 2 (EW Straight)          | Q-Value: -8929.95    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -9714.99    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 11m | Queue West: 0m
+  Max Wait: 20.0s | EMV: No | CO2: 10.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7775.09    
+    Phase 1 (NS Left)              | Q-Value: -8068.99    
+    Phase 2 (EW Straight)          | Q-Value: -7756.79    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7881.63    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 17m | Queue West: 0m
+  Max Wait: 46.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8660.61    
+    Phase 1 (NS Left)              | Q-Value: -8916.76    
+    Phase 2 (EW Straight)          | Q-Value: -8408.46    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8418.56    
+
+[INTERSECTION: C11]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 6m | Queue West: 11m
+  Max Wait: 12.0s | EMV: No | CO2: 12.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6714.81    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7413.28    
+    Phase 2 (EW Straight)          | Q-Value: -7093.83    
+    Phase 3 (EW Left)              | Q-Value: -7305.92    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 200 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 28m | Queue East: 0m | Queue South: 0m | Queue West: 17m
+  Max Wait: 121.0s | EMV: No | CO2: 33.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -10303.46    
+    Phase 1 (NS Left)              | Q-Value: -9389.49    
+    Phase 2 (EW Straight)          | Q-Value: -7100.25    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8951.20    
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 12.0s | EMV: No | CO2: 5.2 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7572.04    
+    Phase 1 (NS Left)              | Q-Value: -7890.23    
+    Phase 2 (EW Straight)          | Q-Value: -7295.00    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7720.95    
+
+[INTERSECTION: C10]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 11m | Queue West: 0m
+  Max Wait: 20.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7709.57    
+    Phase 1 (NS Left)              | Q-Value: -7601.50    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -7859.99    
+    Phase 3 (EW Left)              | Q-Value: -7832.41    
+
+[INTERSECTION: C11]
+  State -> Queue North: 6m | Queue East: 28m | Queue South: 6m | Queue West: 0m
+  Max Wait: 127.0s | EMV: No | CO2: 18.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8935.62    
+    Phase 1 (NS Left)              | Q-Value: -8311.35    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -9040.47    
+    Phase 3 (EW Left)              | Q-Value: -9272.34    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 300 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 4.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6403.09    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6743.80    
+    Phase 2 (EW Straight)          | Q-Value: -6510.19    
+    Phase 3 (EW Left)              | Q-Value: -6525.88    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 34.0s | EMV: No | CO2: 13.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7563.86    
+    Phase 1 (NS Left)              | Q-Value: -7852.97    
+    Phase 2 (EW Straight)          | Q-Value: -7271.67    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7780.79    
+
+[INTERSECTION: C10]
+  State -> Queue North: 17m | Queue East: 6m | Queue South: 28m | Queue West: 6m
+  Max Wait: 145.0s | EMV: YES | CO2: 29.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9521.24    
+    Phase 1 (NS Left)              | Q-Value: -10462.20    
+    Phase 2 (EW Straight)          | Q-Value: -10238.79    
+    Phase 3 (EW Left)              | Q-Value: -9505.28    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C11]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 15.0s | EMV: No | CO2: 10.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7593.51    
+    Phase 1 (NS Left)              | Q-Value: -7709.60    
+    Phase 2 (EW Straight)          | Q-Value: -7083.16    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7478.87    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 400 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 2.0s | EMV: No | CO2: 6.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6626.34    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6917.39    
+    Phase 2 (EW Straight)          | Q-Value: -6709.11    
+    Phase 3 (EW Left)              | Q-Value: -6736.27    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 4.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7079.85    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7315.50    
+    Phase 2 (EW Straight)          | Q-Value: -7127.95    
+    Phase 3 (EW Left)              | Q-Value: -7249.98    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 17m | Queue South: 0m | Queue West: 23m
+  Max Wait: 57.0s | EMV: No | CO2: 21.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9336.00    
+    Phase 1 (NS Left)              | Q-Value: -9565.55    
+    Phase 2 (EW Straight)          | Q-Value: -8617.55    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8668.57    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 17m | Queue South: 0m | Queue West: 0m
+  Max Wait: 27.0s | EMV: No | CO2: 9.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7387.76    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7625.39    
+    Phase 2 (EW Straight)          | Q-Value: -7485.76    
+    Phase 3 (EW Left)              | Q-Value: -7473.89    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 500 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 23m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 41.0s | EMV: YES | CO2: 18.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8691.19    
+    Phase 1 (NS Left)              | Q-Value: -8521.98    
+    Phase 2 (EW Straight)          | Q-Value: -7261.68    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7670.56    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 6.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6916.70    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7127.80    
+    Phase 2 (EW Straight)          | Q-Value: -6965.02    
+    Phase 3 (EW Left)              | Q-Value: -7016.59    
+
+[INTERSECTION: C10]
+  State -> Queue North: 23m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 58.0s | EMV: No | CO2: 19.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8650.88    
+    Phase 1 (NS Left)              | Q-Value: -8900.96    
+    Phase 2 (EW Straight)          | Q-Value: -8254.37    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8338.93    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 51m | Queue South: 34m | Queue West: 6m
+  Max Wait: 543.0s | EMV: No | CO2: 50.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9898.68    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -14675.46    
+    Phase 2 (EW Straight)          | Q-Value: -15375.44    
+    Phase 3 (EW Left)              | Q-Value: -12644.30    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 600 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 11m | Queue South: 0m | Queue West: 0m
+  Max Wait: 13.0s | EMV: No | CO2: 24.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6779.72    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7213.14    
+    Phase 2 (EW Straight)          | Q-Value: -6912.67    
+    Phase 3 (EW Left)              | Q-Value: -7223.38    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 0m
+  Max Wait: 9.0s | EMV: No | CO2: 2.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7228.85    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7620.84    
+    Phase 2 (EW Straight)          | Q-Value: -7332.59    
+    Phase 3 (EW Left)              | Q-Value: -7524.63    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 17m | Queue West: 0m
+  Max Wait: 30.0s | EMV: No | CO2: 13.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7811.38    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -8014.51    
+    Phase 2 (EW Straight)          | Q-Value: -7968.36    
+    Phase 3 (EW Left)              | Q-Value: -7886.56    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 23m | Queue West: 0m
+  Max Wait: 77.0s | EMV: No | CO2: 13.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7798.94    
+    Phase 1 (NS Left)              | Q-Value: -8363.03    
+    Phase 2 (EW Straight)          | Q-Value: -7642.95    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8118.57    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 700 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 6m | Queue East: 11m | Queue South: 0m | Queue West: 0m
+  Max Wait: 6.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6998.56    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7398.92    
+    Phase 2 (EW Straight)          | Q-Value: -7119.34    
+    Phase 3 (EW Left)              | Q-Value: -7113.80    
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 15.0s | EMV: No | CO2: 13.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7416.99    
+    Phase 1 (NS Left)              | Q-Value: -7662.74    
+    Phase 2 (EW Straight)          | Q-Value: -7265.33    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7610.26    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 11m | Queue West: 6m
+  Max Wait: 58.0s | EMV: No | CO2: 17.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8287.50    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -8478.16    
+    Phase 2 (EW Straight)          | Q-Value: -8341.21    
+    Phase 3 (EW Left)              | Q-Value: -8421.43    
+
+[INTERSECTION: C11]
+  State -> Queue North: 17m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 8.0s | EMV: No | CO2: 10.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6798.99    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7490.39    
+    Phase 2 (EW Straight)          | Q-Value: -7121.46    
+    Phase 3 (EW Left)              | Q-Value: -7329.49    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 800 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 28m | Queue West: 0m
+  Max Wait: 73.0s | EMV: No | CO2: 17.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7228.08    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7565.11    
+    Phase 2 (EW Straight)          | Q-Value: -7662.22    
+    Phase 3 (EW Left)              | Q-Value: -7737.81    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 4.0s | EMV: No | CO2: 13.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7333.98    
+    Phase 1 (NS Left)              | Q-Value: -7606.62    
+    Phase 2 (EW Straight)          | Q-Value: -7190.41    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7483.44    
+
+[INTERSECTION: C10]
+  State -> Queue North: 17m | Queue East: 6m | Queue South: 17m | Queue West: 6m
+  Max Wait: 150.0s | EMV: No | CO2: 25.2 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -10506.87    
+    Phase 1 (NS Left)              | Q-Value: -10201.24    
+    Phase 2 (EW Straight)          | Q-Value: -9980.91    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -10702.84    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 18.0s | EMV: No | CO2: 4.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6565.21    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7086.20    
+    Phase 2 (EW Straight)          | Q-Value: -6772.59    
+    Phase 3 (EW Left)              | Q-Value: -6885.48    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 900 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 5.0s | EMV: No | CO2: 36.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6772.26    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7214.53    
+    Phase 2 (EW Straight)          | Q-Value: -6801.41    
+    Phase 3 (EW Left)              | Q-Value: -6999.22    
+
+[INTERSECTION: C01]
+  State -> Queue North: 23m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 38.0s | EMV: YES | CO2: 14.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7961.42    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -8674.29    
+    Phase 2 (EW Straight)          | Q-Value: -8349.83    
+    Phase 3 (EW Left)              | Q-Value: -8097.36    
+
+[INTERSECTION: C10]
+  State -> Queue North: 17m | Queue East: 0m | Queue South: 6m | Queue West: 11m
+  Max Wait: 186.0s | EMV: No | CO2: 20.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9955.97    
+    Phase 1 (NS Left)              | Q-Value: -8297.42    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -9815.48    
+    Phase 3 (EW Left)              | Q-Value: -10040.89    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 14.0s | EMV: No | CO2: 17.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6550.44    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7094.99    
+    Phase 2 (EW Straight)          | Q-Value: -6857.03    
+    Phase 3 (EW Left)              | Q-Value: -6930.39    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1000 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 15.0s | EMV: No | CO2: 27.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6947.16    
+    Phase 1 (NS Left)              | Q-Value: -7161.25    
+    Phase 2 (EW Straight)          | Q-Value: -6985.37    
+    Phase 3 (EW Left)              | Q-Value: -6922.78    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 3.0s | EMV: No | CO2: 19.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7416.04    
+    Phase 1 (NS Left)              | Q-Value: -7527.73    
+    Phase 2 (EW Straight)          | Q-Value: -7325.50    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7475.87    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 23m | Queue West: 0m
+  Max Wait: 179.0s | EMV: No | CO2: 10.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9534.66    
+    Phase 1 (NS Left)              | Q-Value: -8945.55    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -9510.40    
+    Phase 3 (EW Left)              | Q-Value: -9199.15    
+
+[INTERSECTION: C11]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 5.0s | EMV: No | CO2: 10.2 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6626.80    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7091.15    
+    Phase 2 (EW Straight)          | Q-Value: -6764.49    
+    Phase 3 (EW Left)              | Q-Value: -6903.48    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1100 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 17m
+  Max Wait: 96.0s | EMV: No | CO2: 13.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8669.80    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -9397.95    
+    Phase 2 (EW Straight)          | Q-Value: -8858.50    
+    Phase 3 (EW Left)              | Q-Value: -9104.58    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 11m
+  Max Wait: 63.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8681.56    
+    Phase 1 (NS Left)              | Q-Value: -9391.71    
+    Phase 2 (EW Straight)          | Q-Value: -8513.29    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8577.25    
+
+[INTERSECTION: C10]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 17m | Queue West: 6m
+  Max Wait: 71.0s | EMV: No | CO2: 21.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -9286.18    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -10219.12    
+    Phase 2 (EW Straight)          | Q-Value: -9738.70    
+    Phase 3 (EW Left)              | Q-Value: -9378.35    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 10.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6536.24    
+    Phase 1 (NS Left)              | Q-Value: -6731.61    
+    Phase 2 (EW Straight)          | Q-Value: -6489.80    
+    Phase 3 (EW Left)              | Q-Value: -6463.22    <-- AI CHOSE THIS PHASE
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1200 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 27.0s | EMV: No | CO2: 6.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7259.88    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7628.79    
+    Phase 2 (EW Straight)          | Q-Value: -7273.59    
+    Phase 3 (EW Left)              | Q-Value: -7470.95    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 9.0s | EMV: No | CO2: 9.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7198.10    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7528.76    
+    Phase 2 (EW Straight)          | Q-Value: -7561.97    
+    Phase 3 (EW Left)              | Q-Value: -7600.15    
+
+[INTERSECTION: C10]
+  State -> Queue North: 6m | Queue East: 6m | Queue South: 6m | Queue West: 6m
+  Max Wait: 39.0s | EMV: YES | CO2: 12.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8548.77    
+    Phase 1 (NS Left)              | Q-Value: -8688.05    
+    Phase 2 (EW Straight)          | Q-Value: -8458.50    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8853.36    
+
+[INTERSECTION: C11]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 18.0s | EMV: No | CO2: 7.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6720.82    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7358.86    
+    Phase 2 (EW Straight)          | Q-Value: -7083.76    
+    Phase 3 (EW Left)              | Q-Value: -7226.94    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1300 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 17m | Queue East: 6m | Queue South: 6m | Queue West: 0m
+  Max Wait: 87.0s | EMV: No | CO2: 13.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7703.36    
+    Phase 1 (NS Left)              | Q-Value: -8294.24    
+    Phase 2 (EW Straight)          | Q-Value: -8210.64    
+    Phase 3 (EW Left)              | Q-Value: -7248.64    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 57.0s | EMV: No | CO2: 19.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7917.85    
+    Phase 1 (NS Left)              | Q-Value: -8405.16    
+    Phase 2 (EW Straight)          | Q-Value: -7874.70    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8261.07    
+
+[INTERSECTION: C10]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 5.0s | EMV: No | CO2: 4.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7431.89    
+    Phase 1 (NS Left)              | Q-Value: -7546.58    
+    Phase 2 (EW Straight)          | Q-Value: -7347.52    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7482.50    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 0m
+  Max Wait: 1.0s | EMV: No | CO2: 8.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6717.58    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6996.05    
+    Phase 2 (EW Straight)          | Q-Value: -6724.58    
+    Phase 3 (EW Left)              | Q-Value: -6807.63    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1400 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 24.0s | EMV: No | CO2: 2.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7212.73    
+    Phase 1 (NS Left)              | Q-Value: -7126.61    
+    Phase 2 (EW Straight)          | Q-Value: -7177.90    
+    Phase 3 (EW Left)              | Q-Value: -7051.18    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 8.0s | EMV: No | CO2: 13.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7287.67    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7689.76    
+    Phase 2 (EW Straight)          | Q-Value: -7491.51    
+    Phase 3 (EW Left)              | Q-Value: -7610.62    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 17m | Queue West: 0m
+  Max Wait: 76.0s | EMV: No | CO2: 23.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8637.33    
+    Phase 1 (NS Left)              | Q-Value: -9046.93    
+    Phase 2 (EW Straight)          | Q-Value: -8428.74    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8802.15    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 4.0s | EMV: YES | CO2: 11.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6264.33    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6635.51    
+    Phase 2 (EW Straight)          | Q-Value: -7025.65    
+    Phase 3 (EW Left)              | Q-Value: -6542.24    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1500 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 17m | Queue South: 0m | Queue West: 0m
+  Max Wait: 27.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7307.96    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7567.75    
+    Phase 2 (EW Straight)          | Q-Value: -7441.54    
+    Phase 3 (EW Left)              | Q-Value: -7481.17    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 0m
+  Max Wait: 4.0s | EMV: No | CO2: 7.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7222.79    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7582.59    
+    Phase 2 (EW Straight)          | Q-Value: -7313.39    
+    Phase 3 (EW Left)              | Q-Value: -7500.30    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 0m
+  Max Wait: 20.0s | EMV: No | CO2: 2.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7337.07    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7777.45    
+    Phase 2 (EW Straight)          | Q-Value: -7429.66    
+    Phase 3 (EW Left)              | Q-Value: -7679.38    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 17m
+  Max Wait: 36.0s | EMV: No | CO2: 14.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7726.15    
+    Phase 1 (NS Left)              | Q-Value: -7842.78    
+    Phase 2 (EW Straight)          | Q-Value: -7838.13    
+    Phase 3 (EW Left)              | Q-Value: -7572.44    <-- AI CHOSE THIS PHASE
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1600 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 18.0s | EMV: No | CO2: 9.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7362.46    
+    Phase 1 (NS Left)              | Q-Value: -7434.20    
+    Phase 2 (EW Straight)          | Q-Value: -6999.64    
+    Phase 3 (EW Left)              | Q-Value: -6836.78    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 7.0s | EMV: YES | CO2: 20.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7353.93    
+    Phase 1 (NS Left)              | Q-Value: -7695.64    
+    Phase 2 (EW Straight)          | Q-Value: -7171.18    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7434.53    
+
+[INTERSECTION: C10]
+  State -> Queue North: 39m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 91.0s | EMV: No | CO2: 35.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -10197.03    
+    Phase 1 (NS Left)              | Q-Value: -10166.90    
+    Phase 2 (EW Straight)          | Q-Value: -9664.29    
+    Phase 3 (EW Left)              | Q-Value: -9593.71    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 2.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6545.34    
+    Phase 1 (NS Left)              | Q-Value: -6742.08    
+    Phase 2 (EW Straight)          | Q-Value: -6500.15    
+    Phase 3 (EW Left)              | Q-Value: -6479.58    <-- AI CHOSE THIS PHASE
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1700 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 16.0s | EMV: No | CO2: 19.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7310.82    
+    Phase 1 (NS Left)              | Q-Value: -7340.99    
+    Phase 2 (EW Straight)          | Q-Value: -6861.84    
+    Phase 3 (EW Left)              | Q-Value: -6775.53    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 18.0s | EMV: No | CO2: 11.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7470.30    
+    Phase 1 (NS Left)              | Q-Value: -7754.33    
+    Phase 2 (EW Straight)          | Q-Value: -7359.16    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7669.12    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 11m | Queue West: 0m
+  Max Wait: 13.0s | EMV: YES | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7573.61    
+    Phase 1 (NS Left)              | Q-Value: -7871.70    
+    Phase 2 (EW Straight)          | Q-Value: -7333.34    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7557.29    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 17m | Queue West: 0m
+  Max Wait: 38.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7232.07    
+    Phase 1 (NS Left)              | Q-Value: -7497.37    
+    Phase 2 (EW Straight)          | Q-Value: -6750.16    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7185.72    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1800 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 8.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6505.27    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6807.78    
+    Phase 2 (EW Straight)          | Q-Value: -6567.43    
+    Phase 3 (EW Left)              | Q-Value: -6638.97    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 24.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7120.86    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7347.23    
+    Phase 2 (EW Straight)          | Q-Value: -7158.94    
+    Phase 3 (EW Left)              | Q-Value: -7313.00    
+
+[INTERSECTION: C10]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 4.0s | EMV: No | CO2: 9.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7453.74    
+    Phase 1 (NS Left)              | Q-Value: -7542.35    
+    Phase 2 (EW Straight)          | Q-Value: -7360.53    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7502.15    
+
+[INTERSECTION: C11]
+  State -> Queue North: 17m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 16.0s | EMV: No | CO2: 21.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7092.15    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7730.11    
+    Phase 2 (EW Straight)          | Q-Value: -7203.83    
+    Phase 3 (EW Left)              | Q-Value: -7622.62    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 1900 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 23.0s | EMV: No | CO2: 4.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7139.00    
+    Phase 1 (NS Left)              | Q-Value: -7279.26    
+    Phase 2 (EW Straight)          | Q-Value: -7209.36    
+    Phase 3 (EW Left)              | Q-Value: -7053.61    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 11m
+  Max Wait: 20.0s | EMV: No | CO2: 31.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7818.17    
+    Phase 1 (NS Left)              | Q-Value: -8164.34    
+    Phase 2 (EW Straight)          | Q-Value: -7590.40    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7979.74    
+
+[INTERSECTION: C10]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 27.0s | EMV: No | CO2: 10.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7955.85    
+    Phase 1 (NS Left)              | Q-Value: -7903.86    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -7960.93    
+    Phase 3 (EW Left)              | Q-Value: -7939.45    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 10.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6549.35    
+    Phase 1 (NS Left)              | Q-Value: -6735.62    
+    Phase 2 (EW Straight)          | Q-Value: -6513.29    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -6522.62    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2000 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 5.0s | EMV: No | CO2: 6.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6654.01    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6970.64    
+    Phase 2 (EW Straight)          | Q-Value: -6654.02    
+    Phase 3 (EW Left)              | Q-Value: -6730.21    
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 23m | Queue South: 0m | Queue West: 6m
+  Max Wait: 21.0s | EMV: No | CO2: 19.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7413.85    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -8496.23    
+    Phase 2 (EW Straight)          | Q-Value: -8268.17    
+    Phase 3 (EW Left)              | Q-Value: -8064.19    
+
+[INTERSECTION: C10]
+  State -> Queue North: 17m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 183.0s | EMV: No | CO2: 31.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -10253.31    
+    Phase 1 (NS Left)              | Q-Value: -9649.99    <-- AI CHOSE THIS PHASE
+    Phase 2 (EW Straight)          | Q-Value: -10165.25    
+    Phase 3 (EW Left)              | Q-Value: -10017.20    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 3.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6419.62    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6707.45    
+    Phase 2 (EW Straight)          | Q-Value: -6577.70    
+    Phase 3 (EW Left)              | Q-Value: -6578.13    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2100 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 81.0s | EMV: No | CO2: 25.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7318.38    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -8078.31    
+    Phase 2 (EW Straight)          | Q-Value: -7596.04    
+    Phase 3 (EW Left)              | Q-Value: -8051.91    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 2.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7196.10    
+    Phase 1 (NS Left)              | Q-Value: -7322.30    
+    Phase 2 (EW Straight)          | Q-Value: -7105.43    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7284.46    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 9.0s | EMV: No | CO2: 13.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7464.74    
+    Phase 1 (NS Left)              | Q-Value: -7646.76    
+    Phase 2 (EW Straight)          | Q-Value: -7323.82    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7593.05    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 13.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6462.62    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6754.55    
+    Phase 2 (EW Straight)          | Q-Value: -6600.75    
+    Phase 3 (EW Left)              | Q-Value: -6605.98    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2200 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 75.0s | EMV: No | CO2: 7.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7944.64    
+    Phase 1 (NS Left)              | Q-Value: -7917.24    
+    Phase 2 (EW Straight)          | Q-Value: -7844.72    
+    Phase 3 (EW Left)              | Q-Value: -7007.81    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 6m
+  Max Wait: 3.0s | EMV: No | CO2: 8.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7222.02    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7648.31    
+    Phase 2 (EW Straight)          | Q-Value: -7456.85    
+    Phase 3 (EW Left)              | Q-Value: -7575.86    
+
+[INTERSECTION: C10]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 8.0s | EMV: No | CO2: 17.9 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7647.18    
+    Phase 1 (NS Left)              | Q-Value: -7787.85    
+    Phase 2 (EW Straight)          | Q-Value: -7404.39    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7682.04    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 17m | Queue South: 11m | Queue West: 0m
+  Max Wait: 49.0s | EMV: No | CO2: 19.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7765.32    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7952.00    
+    Phase 2 (EW Straight)          | Q-Value: -8075.72    
+    Phase 3 (EW Left)              | Q-Value: -7900.56    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2300 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 17m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 33.0s | EMV: No | CO2: 21.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7902.64    
+    Phase 1 (NS Left)              | Q-Value: -8092.57    
+    Phase 2 (EW Straight)          | Q-Value: -7260.39    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7869.40    
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 3.0s | EMV: No | CO2: 8.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7353.26    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7504.59    
+    Phase 2 (EW Straight)          | Q-Value: -7403.77    
+    Phase 3 (EW Left)              | Q-Value: -7373.20    
+
+[INTERSECTION: C10]
+  State -> Queue North: 17m | Queue East: 11m | Queue South: 23m | Queue West: 0m
+  Max Wait: 102.0s | EMV: No | CO2: 27.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -10688.02    
+    Phase 1 (NS Left)              | Q-Value: -11896.26    
+    Phase 2 (EW Straight)          | Q-Value: -10227.68    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -10233.56    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 11m | Queue South: 11m | Queue West: 0m
+  Max Wait: 159.0s | EMV: No | CO2: 24.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8235.26    
+    Phase 1 (NS Left)              | Q-Value: -9083.79    
+    Phase 2 (EW Straight)          | Q-Value: -7991.08    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -9189.43    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2400 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 6m | Queue West: 0m
+  Max Wait: 3.0s | EMV: No | CO2: 25.8 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6753.52    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7140.31    
+    Phase 2 (EW Straight)          | Q-Value: -6824.74    
+    Phase 3 (EW Left)              | Q-Value: -6943.26    
+
+[INTERSECTION: C01]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 13.0s | EMV: No | CO2: 19.3 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7736.11    
+    Phase 1 (NS Left)              | Q-Value: -7950.90    
+    Phase 2 (EW Straight)          | Q-Value: -7503.23    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7820.74    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 11m
+  Max Wait: 33.0s | EMV: No | CO2: 13.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7734.65    
+    Phase 1 (NS Left)              | Q-Value: -7902.83    
+    Phase 2 (EW Straight)          | Q-Value: -7872.50    
+    Phase 3 (EW Left)              | Q-Value: -7571.41    <-- AI CHOSE THIS PHASE
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 11m | Queue West: 0m
+  Max Wait: 31.0s | EMV: No | CO2: 10.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7145.24    
+    Phase 1 (NS Left)              | Q-Value: -7625.61    
+    Phase 2 (EW Straight)          | Q-Value: -6901.97    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7338.91    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2500 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 2.0s | EMV: No | CO2: 8.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6491.85    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -6755.77    
+    Phase 2 (EW Straight)          | Q-Value: -6515.87    
+    Phase 3 (EW Left)              | Q-Value: -6611.72    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 0m
+  Max Wait: 9.0s | EMV: No | CO2: 8.5 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7272.29    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7632.74    
+    Phase 2 (EW Straight)          | Q-Value: -7335.56    
+    Phase 3 (EW Left)              | Q-Value: -7562.69    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 0m
+  Max Wait: 0.0s | EMV: No | CO2: 18.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7109.67    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7328.58    
+    Phase 2 (EW Straight)          | Q-Value: -7142.69    
+    Phase 3 (EW Left)              | Q-Value: -7305.35    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 9.0s | EMV: No | CO2: 12.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6822.22    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7054.47    
+    Phase 2 (EW Straight)          | Q-Value: -6840.89    
+    Phase 3 (EW Left)              | Q-Value: -6853.60    
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2600 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 11m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 23.0s | EMV: No | CO2: 17.4 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7788.65    
+    Phase 1 (NS Left)              | Q-Value: -7781.62    
+    Phase 2 (EW Straight)          | Q-Value: -7141.32    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7312.77    
+
+[INTERSECTION: C01]
+  State -> Queue North: 6m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 8.0s | EMV: No | CO2: 12.2 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7664.65    
+    Phase 1 (NS Left)              | Q-Value: -7847.16    
+    Phase 2 (EW Straight)          | Q-Value: -7361.50    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7780.83    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 6m | Queue West: 0m
+  Max Wait: 11.0s | EMV: No | CO2: 2.6 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7444.28    
+    Phase 1 (NS Left)              | Q-Value: -7669.66    
+    Phase 2 (EW Straight)          | Q-Value: -7316.89    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -7600.65    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 4.0s | EMV: No | CO2: 5.0 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6752.43    
+    Phase 1 (NS Left)              | Q-Value: -6964.98    
+    Phase 2 (EW Straight)          | Q-Value: -6749.27    
+    Phase 3 (EW Left)              | Q-Value: -6702.47    <-- AI CHOSE THIS PHASE
+
+======================================================================
+
+
+======================================================================
+=== Q-TABLE REPORT (STEP: 2700 SECONDS) ===
+======================================================================
+
+[INTERSECTION: C00]
+  State -> Queue North: 17m | Queue East: 0m | Queue South: 0m | Queue West: 17m
+  Max Wait: 24.0s | EMV: No | CO2: 15.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8264.88    
+    Phase 1 (NS Left)              | Q-Value: -8231.89    
+    Phase 2 (EW Straight)          | Q-Value: -7148.67    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8051.86    
+
+[INTERSECTION: C01]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 2.0s | EMV: No | CO2: 4.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -7160.04    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7450.34    
+    Phase 2 (EW Straight)          | Q-Value: -7294.27    
+    Phase 3 (EW Left)              | Q-Value: -7387.27    
+
+[INTERSECTION: C10]
+  State -> Queue North: 0m | Queue East: 6m | Queue South: 0m | Queue West: 11m
+  Max Wait: 40.0s | EMV: No | CO2: 12.1 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -8123.76    
+    Phase 1 (NS Left)              | Q-Value: -8491.77    
+    Phase 2 (EW Straight)          | Q-Value: -7704.36    <-- AI CHOSE THIS PHASE
+    Phase 3 (EW Left)              | Q-Value: -8132.31    
+
+[INTERSECTION: C11]
+  State -> Queue North: 0m | Queue East: 0m | Queue South: 0m | Queue West: 6m
+  Max Wait: 13.0s | EMV: No | CO2: 6.7 g/s
+  [Q-TABLE EVALUATION]
+    Phase 0 (NS Straight)          | Q-Value: -6521.09    <-- AI CHOSE THIS PHASE
+    Phase 1 (NS Left)              | Q-Value: -7008.95    
+    Phase 2 (EW Straight)          | Q-Value: -6799.22    
+    Phase 3 (EW Left)              | Q-Value: -6900.31    
+
+======================================================================
+

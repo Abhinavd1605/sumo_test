@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "skills": {
+    "research-ai-tools": {
+      "source": "omer-metin/skills-for-antigravity",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/omer-metin/skills-for-antigravity.git",
+      "skillFolderHash": "",
+      "installedAt": "2026-02-26T04:46:46.963Z",
+      "updatedAt": "2026-02-26T04:47:12.383Z"
+    }
+  },
+  "dismissed": {}
+}

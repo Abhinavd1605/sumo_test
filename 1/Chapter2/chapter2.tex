@@ -1,0 +1,46 @@
+\chapter{Literature Survey}
+\label{chap:lit_survey}
+
+\section{Evolution of Traffic Signal Control}
+In recent years, the field of optimizing traffic signal control has been extensively researched, with some methods already applied in practice. For example, building upon traditional fixed-time traffic lights, Lou et al. \cite{lou_fixed} proposed a feature-guided progressive method for fixed-time signal optimization, which rapidly optimizes green signal ratios at intersections by integrating the relationship between green light duration and traffic flow. Jovanovi\'c and Teodorovi\'c \cite{jovanovic_bee} introduced a metaheuristic algorithm based on the bee colony optimization algorithm, discovering optimal values for cycle length, splits, and offsets by minimizing the total travel time experienced by all vehicles passing through oversaturated intersections. However, fixed-time traffic signals only involve algorithmic optimizations without considering real-time traffic variations. Our proposed scheme addresses real-time conditions and makes decisions through Deep Reinforcement Learning (DRL).
+
+Later, researchers began to focus on dynamically adaptive traffic signal control. Fan et al. \cite{fan_routing} proposed a solution integrating dynamic traffic signal control with vehicle route planning, enabling interaction with vehicles via vehicle-to-everything (V2X) communication, which includes dynamically adaptive traffic signals. However, its integration with existing traffic signal systems remains a challenge requiring further resolution.
+
+\section{Deep Reinforcement Learning in Traffic Control}
+This necessitates algorithmic modifications capable of continuous learning. Since traffic signals constantly interact with a highly dynamic environment, Reinforcement Learning (RL) algorithms are particularly suitable for such problems. Sebastian et al. \cite{sebastian_rl} proposed an RL framework with recurrent communication modules for traffic light control, learning control policies through decentralized learning to achieve optimization. Setting the foundation for deep learning in this domain, Genders and Razavi \cite{genders2016using} utilized convolutional neural networks for discrete intersection control. Wei et al. \cite{wei_ddpg} developed a control method based on traffic intensity analysis, designing a deep deterministic policy gradient (DDPG)-based strategy to optimize phase duration under fixed phase sequences.
+
+However, mere methodological improvements focusing purely on wait times are insufficient. Zheng et al. \cite{zheng_dlrl} combined deep learning with RL for complex signal control, while Tigga et al. \cite{tigga_qlearning} significantly reduced queue lengths and waiting times using tabular Q-learning. To address overestimation bias in traditional Q-learning topologies, P\'alos and Husz\'ak \cite{palos2021evaluation} alongside de Moura et al. \cite{demoura2022multi} pioneered the application of Double Dueling Deep Q-Networks (D3QN) for adaptive control.
+
+\section{Emergency Prioritization and Ecological Paradigms}
+Alongside congestion mitigation, researchers have begun addressing emergency vehicle prioritizing \cite{ieee_iot_2025}. Tang and Baskiyar \cite{tang_fog} proposed an intelligent traffic signal control framework based on DRL, which utilizes the fog computing paradigm. Traffic signals are divided into clusters, each controlled by shared DRL agents in fog nodes based on collective information of regional traffic conditions. Furthermore, Al-Aboody and Kamil \cite{ieee_iot_2025} precisely developed a DRL-driven strategy mapped across a three-layer fog computing architecture equipped with dynamic noise for hybrid exploration, specifically targeting emergency vehicle scenarios. Duarte et al. \cite{duarte_6g} integrated emergency vehicle signal control with 6G technology to preempt signal priority although this substantially impacts regular traffic. To minimize systemic disruption while preserving efficiency, novel technologies are being incorporated: Vineeth et al. \cite{vineeth_bigdata} achieved dynamic traffic optimization through big data analytics and machine learning to enhance emergency vehicle efficiency, while Sithiyopasakul \cite{sithiyopasakul_iot} and Kumar et al. \cite{kumar_iot} demonstrated the effective IoT-cloud computing integration for robust decision routing.
+
+Finally, recent literature highlights the absolute necessity of integrating ecological metrics directly into RL formulations to create sustainable smart cities. Formulations incorporating the HBEFA models reveal that penalizing total CO\textsubscript{2} alters the agent's behavior to favor smooth trajectories over hasty signal toggling \cite{al2021deep, chen2023adaptive}. However, executing these complex deep learning models introduces its own computational carbon footprint. The principles of ``Green AI'' dictate that this inference energy draw must be quantified and minimized to ensure net-positive environmental outcomes \cite{schwartz2020green, oecd2022measuring}.
+
+\section{Summary of Parameter Formulations in Literature}
+The formulation of the Markov Decision Process (MDP) parameters—State, Action, and Reward—varies significantly across the literature depending on the primary control objective. Table~\ref{tab:lit_params} summarizes the parameter choices extracted from key DRL traffic control studies to contextualize the framework designed in this report.
+
+\begin{table}[h]
+\centering
+\caption{Comparison of DRL Parameters in Recent Traffic Signal Control Literature}
+\label{tab:lit_params}
+\renewcommand{\arraystretch}{1.3}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|p{3.5cm}|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Reference} & \textbf{State Representation ($S$)} & \textbf{Action Space ($A$)} & \textbf{Reward Function ($R$)} & \textbf{Primary Objective} \\
+\hline
+Genders et al. \cite{genders2016using} & Lane density, vehicle speed, current phase & Discrete phase switch & Negative queue length & Minimize traffic delay \\
+\hline
+Wei et al. (DDPG) \cite{wei_ddpg} & Traffic intensity, queue lengths & Continuous phase duration & Maximize throughput & Enhance flow via durations \\
+\hline
+P\'alos $\&$ Husz\'ak \cite{palos2021evaluation} & Queue length, waiting time matrix & Next phase selection & Inverse of waiting summation & Optimize average velocity \\
+\hline
+Al-Aboody et al. (Fog) \cite{ieee_iot_2025} & Multi-layer traffic matrix, EMV positional data & Phase duration extension & Dynamic penalty for EMV delay vs. Social delay & Prioritize Emergency Vehicles \\
+\hline
+Chen et al. \cite{chen2023adaptive} & Speed variance, queue length, current green time & Adjust green duration & Negative CO\textsubscript{2} proxy and flow rate ratio & Eco-friendly eco-routing \\
+\hline
+\textbf{Our Proposed Model} & \textbf{Cumulative lane wait times, density, EMV coordinates} & \textbf{Discrete active phase} & \textbf{Dynamic EMV priority + direct CO\textsubscript{2}/Fuel emission penalty} & \textbf{Green AI Stability \& Flow} \\
+\hline
+\end{tabular}%
+}
+\end{table}

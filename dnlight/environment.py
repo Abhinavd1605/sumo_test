@@ -56,6 +56,7 @@ class SumoEnvironment:
             label: TraCI connection label.
             use_green_reward: If True, use CO2-penalized green reward.
             alpha_co2: Weight for CO2 penalty in green reward.
+            seed: Fixed seed for SUMO randomization (optional).
         """
         self.sumocfg_path = os.path.abspath(sumocfg_path)
         self.use_gui = use_gui
@@ -65,6 +66,7 @@ class SumoEnvironment:
         self.label = label
         self.use_green_reward = use_green_reward
         self.alpha_co2 = alpha_co2
+        self.seed = None  # Updated on reset
 
         self.sumo_binary = "sumo-gui" if use_gui else "sumo"
         self.conn = None  # traci connection
@@ -86,8 +88,9 @@ class SumoEnvironment:
     def action_dim(self) -> int:
         return self.num_phases
 
-    def reset(self) -> np.ndarray:
+    def reset(self, seed: Optional[int] = None) -> np.ndarray:
         """Reset the simulation and return the initial state."""
+        self.seed = seed
         # Close existing connection
         if self.conn is not None:
             try:
@@ -103,8 +106,11 @@ class SumoEnvironment:
             "--waiting-time-memory", "1000",
             "--no-warnings", "true",
             "--start", "true",
-            "--random", "true",
         ]
+        if self.seed is not None:
+            sumo_cmd.extend(["--seed", str(self.seed)])
+        else:
+            sumo_cmd.append("--random")
 
         traci.start(sumo_cmd, label=self.label)
         self.conn = traci
@@ -533,10 +539,11 @@ class MultiIntersectionEnv:
     def num_intersections(self) -> int:
         return len(self.tls_ids)
 
-    def reset(self) -> Dict[str, np.ndarray]:
+    def reset(self, seed: Optional[int] = None) -> Dict[str, np.ndarray]:
         """
         Reset simulation. Returns dict of {tls_id: state_array}.
         """
+        self.seed = seed
         try:
             traci.close()
         except Exception:
@@ -549,8 +556,12 @@ class MultiIntersectionEnv:
             "--waiting-time-memory", "1000",
             "--no-warnings", "true",
             "--start", "true",
-            "--random", "true",
         ]
+        if self.seed is not None:
+            sumo_cmd.extend(["--seed", str(self.seed)])
+        else:
+            sumo_cmd.append("--random")
+
         traci.start(sumo_cmd, label=self.label)
 
         self.tls_ids = sorted(traci.trafficlight.getIDList())

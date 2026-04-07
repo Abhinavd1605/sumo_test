@@ -1,0 +1,40 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+\section{Background}
+Take a look at any busy urban intersection and the problem is obvious. Cars stack up at red lights, sit idling for minutes on end, and then all accelerate together when the light finally turns green. This basic stop-and-go cycle doesn't just waste people's time—it causes engines to spit out significantly more carbon dioxide than they would if traffic kept flowing steadily \cite{al2021deep}. In fact, a huge chunk of all greenhouse gases coming from cities traces directly back to this specific driving pattern.
+
+To make matters worse, emergency vehicles get caught in these exact same traffic traps. If a fire truck rolls up to a jammed intersection, it has to rely on drivers physically moving out of the way. Because it's impossible to predict how drivers will react, ambulances often face severe and unpredictable delays right when every second counts. 
+
+Over the past few years, engineers have started throwing Deep Reinforcement Learning (DRL) at this problem to see if software can manage intersections better than basic timers \cite{genders2016using}. The core idea is simple: let a neural network watch the traffic cameras, figure out the congestion status in real-time, and flip the lights accordingly rather than relying on a rigid schedule.
+
+\section{Motivation}
+The catch with most existing DRL systems is that they're almost entirely built to fix just one thing: waiting times \cite{chen2023adaptive}. Researchers tend to ignore emissions altogether. But if you program an AI to clear queues as fast as violently possible, you might actually force drivers to brake and accelerate more harshly. It also doesn't solve the fire truck problem, since most algorithms treat an ambulance the exact same way they treat a regular sedan.
+
+We built this project to fix both of those blind spots by designing a "Green AI" controller. We took a Double Dueling Deep Q-Network (D3QN) and deliberately tweaked its reward system so it gets hit with a direct penalty whenever the cars it is managing emit too much CO2. We also hard-coded priority access for emergency vehicles. Crucially, we didn't just stop at vehicular emissions. We actually measured the power draw of the graphics card running our AI to prove that the electricity the software burns isn't secretly destroying the environment worse than the traffic itself \cite{schwartz2020green}.
+
+\section{Problem Formulation}
+The traffic signal control problem is framed as a Markov Decision Process (MDP) defined by the tuple $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$. At each time step $t$, the agent observes the intersection state $s_t \in \mathcal{S}$, selects a phase action $a_t \in \mathcal{A}$, and transitions to a new state $s_{t+1}$ while receiving a reward $r_t$.
+
+The primary objective is to find an optimal policy $\pi^*$ that maximizes the expected cumulative discounted reward:
+\begin{equation}
+J(\pi) = \mathbb{E}_{\pi} \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]
+\end{equation}
+where $\gamma \in [0, 1)$ is the discount factor.
+
+In our Green AI framework, the objective problem is effectively translated into an optimization minimizing three main costs: overall vehicle delay, total vehicular emissions, and emergency vehicle travel time. This is represented by our composite reward function:
+\begin{equation}
+R_t = - \left( w_{emv} \cdot D_{emv}(t) + w_{soc} \cdot D_{soc}(t) + P_{E}(t) \right)
+\end{equation}
+where $D_{emv}(t)$ is the delay penalty strictly for emergency vehicles, $D_{soc}(t)$ encompasses queue lengths and waiting times for social vehicles, and $P_{E}(t)$ translates directly to the ecological cost at step $t$:
+\begin{equation}
+P_E(t) = \alpha \left( \frac{E_{CO2}(t)}{C_1} + \frac{E_{fuel}(t)}{C_2} \right)
+\end{equation}
+where $E_{CO2}(t)$ and $E_{fuel}(t)$ are the instantaneous aggregated CO2 and fuel metrics extracted via the HBEFA3 microscopic emission model, scaled by constants $C_1$ and $C_2$ respectively, and $\alpha$ determines the emission penalty weight.
+
+The optimization is subject to safe operational constraints:
+\begin{align}
+    t_{green} &\geq t_{min} \quad \text{(Minimum green time for safety)} \\
+    \sum_{p \in \mathcal{P}} x_p(t) &= 1 \quad \text{(Only one non-conflicting phase active at any time)} 
+\end{align}
+Ultimately, the goal is to obtain $\pi^*$ via Deep Q-learning approximation such that $Q^*(s, a) \approx Q(s, a; \theta)$ where $\theta$ represents the neural network weights.

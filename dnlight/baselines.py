@@ -18,8 +18,8 @@ class FixedTimeController:
     """
 
     def __init__(self, num_phases: int = 4,
-                 green_duration: int = 30,
-                 yellow_duration: int = 3):
+                 green_duration: int = 60,
+                 yellow_duration: int = 5):
         """
         Args:
             num_phases: Number of green phases to cycle through.

@@ -1,0 +1,24 @@
+\chapter{Proposed Methodology}
+\label{chap:methodology}
+
+\section{Environment and State Extraction}
+Simulations were conducted using the Simulation of Urban MObility (SUMO) software utilizing a modeled 2x2 grid (four interlocking signalized intersections) populated dynamically with normal commuter traffic and priority emergency vehicles (EMVs). For each local agent, the observed temporal state is represented by cumulative lane wait times, density quotients, EMV coordinates, and bounding intersection data.
+
+\section{The D3QN Baseline Configuration}
+The baseline algorithm harnesses a Double Dueling Deep Q-Network topology augmented with Prioritized Experience Replay (PER). The baseline reward ($R_{standard}$) is computed primarily from temporal delays: it synthesizes a global weight balancing the aggregate wait times of social vehicles, the uninterrupted progression of EMVs, and a fairness coefficient penalizing disproportionate starvation of less busy lanes.
+
+\section{Green AI Reward Restructuring}
+The proposed environmentally conservative modification overlays a direct chemical penalty onto the base algorithmic feedback loop. For vehicular evaluation, TraCI protocols sample the real-time mg/s CO\textsubscript{2} footprint and ml/s fossil fuel burn of every simulated agent via the HBEFA3 model. The synthesized Green Reward is generated as follows:
+
+\begin{equation}
+R_{green} = R_{standard} - \alpha_{co2} \times \left( \frac{CO2_{total}}{100,000} + 0.5 \times \frac{Fuel_{total}}{50} \right)
+\end{equation}
+
+where $\alpha_{co2}$ operates as the tunable emission scalar, fixed to 0.3.
+
+\section{Hardware Carbon Tracking}
+To satisfy Green AI constraints, physical GPU power draw is continuously polled. The execution carbon footprint ($\Gamma$) per discrete episode is computed utilizing systemic energy output ($E_{GPU}$) indexed against regional electrical grid carbon intensity ($CI$):
+
+\begin{equation}
+\Gamma(t) = CI(t) \times \frac{E_{GPU}(t)}{3.6 \times 10^6}
+\end{equation}
