@@ -1,41 +1,145 @@
-# iitm-thesis-template
-
-A LaTeX class (`iitmdiss.cls`) along with a simple template thesis
-(`thesis.tex`) and synopsis (`synopsis.tex`) are provided here.  These can
-be used to easily write a thesis (or synopsis) suitable for submission
-at IIT Madras.  The class provides options to format PhD, MS,
-M.Tech., B.Tech. and DD thesis.  It also allows one to write a synopsis
-using the same class file.  Also provided is a BiBTeX style file
-(`iitm.bst`) that formats all bibliography entries as per the IITM
-format.  A simple sample bibliography file (`refs.bib`) is also
-provided.
-
-Please read thesis.dvi for more details.
+# Project Setup & Reproduction Guide
+**Green AI Driven Multi-Agent Traffic Signal Control for Emission Reduction and Emergency Vehicle Prioritisation**
 
 
-by Prof. Prabhu Ramachandran prabhu AT ae.iitm.ac.in
+This guide provides the exact steps required to install, configure, and run the Deep Reinforcement Learning (DRL) traffic control system.
 
-(modified by Shahidh K Muhammed shahidhkmuhammed AT gmail.com)
 
-## Instructions
+---
 
-- Install TexLive:
-  - Generic installation [instructions](http://www.tug.org/texlive/acquire-netinstall.html)
-  - Ubuntu:  `sudo apt-get install texlive-full`
-- Edit `thesis.tex` file using any text editor.
-  - TeXStudio preferred: [Download](http://www.texstudio.org/)
-  - Install on Ubuntu: `sudo apt-get install texstudio`
-- Compile the tex file to pdf using terminal/command line, execute:
-  - `pdflatex thesis.tex`
-- You can use any other LaTeX installation of your choice, but `TexLive Full` install will guarantee that all required packages are installed.
-- In case you are having trouble using LaTeX on your machine, simply create an account at [ShareLaTeX](https://www.sharelatex.com/) and create a new project and upload a zip of this project.
-  - zip file available for [download](https://github.com/The-WebOps-Club/iitm-thesis-template/archive/master.zip)
 
-### References
+## 1. Prerequisites
 
-<a href="http://www.zotero.org/">
-  <img border="0" alt="Get Zotero" title="Get Zotero" 
-  src="http://www.zotero.org/images/promote/get_zotero_98x39.gif">
-</a>
 
-Use [Zotero](https://www.zotero.org/) to manage your references and auto-generate bibliography. 
+Before setting up the Python environment, ensure the following are installed:
+
+
+1.  **Python 3.9 or 3.10**: Recommended for compatibility with TensorFlow 2.10.
+2.  **Eclipse SUMO (Simulation of Urban MObility)**:
+    *   [Download SUMO](https://www.eclipse.org/sumo/download/)
+    *   **IMPORTANT**: After installation, you must add a system environment variable named `SUMO_HOME` pointing to your SUMO installation directory (e.g., `C:\Program Files (x86)\Eclipse\Sumo`).
+3.  **Conda (Optional but Recommended)**: Use Miniconda or Anaconda to manage dependencies.
+
+
+---
+
+
+## 2. Installation
+
+
+Follow these steps to set up the local environment:
+
+
+```bash
+# 1. Create a dedicated virtual environment
+conda create -n sumo_drl python=3.9
+conda activate sumo_drl
+
+
+# 2. Install core dependencies
+pip install tensorflow>=2.10.0 numpy matplotlib traci
+
+
+# 3. Verify SUMO is accessible
+# Run this in your terminal; it should print the SUMO version
+sumo
+```
+
+
+---
+
+
+## 3. Project Structure Overview
+
+
+*   `dnlight/`: Core logic (Agent architecture, Reward functions, SUMO Environment wrappers).
+*   `configs/`: Traffic network files (`.sumocfg`, `.net.xml`, `.rou.xml`).
+*   `checkpoints/`: Pre-trained model weights for both Standard and Green AI agents.
+*   `train_multi.py`: Main script for training agents on the grid network.
+*   `evaluate_multi.py`: Script for running a trained model with GUI to observe behavior.
+*   `compare_two_ai.py`: Generates head-to-head comparison charts between Standard and Green AI.
+*   `visualize_q_table.py`: Live graphical dashboard showing the AI's internal "brain" decisions.
+
+
+---
+
+
+## 4. Run Commands Cheat Sheet
+
+
+### 4.1 Training
+To train the agents from scratch:
+
+
+**Standard AI (Delay-based only):**
+```bash
+python train_multi.py --episodes 400 --no-green --label std_run
+```
+
+
+**Green AI (CO2 + EMV Prioritisation):**
+```bash
+python train_multi.py --episodes 400 --green --label green_run
+```
+
+
+---
+
+
+### 4.2 Visualizing AI Logic (Presentation Tools)
+These scripts are designed for live demonstrations and defense presentations.
+
+
+**Live Q-Table Dashboard:**
+Shows a real-time bar chart of the AI's Q-values and current state (Queue, Wait Time, CO2, EMV status).
+```bash
+python visualize_q_table.py --checkpoint checkpoints_multi_green_ext/dnlight_green_best --green --gui --delay 0.5 --focus-tls C11
+```
+
+
+**Step-by-Step Brain Trace:**
+Prints the exact numerical Q-table to the terminal at every step.
+```bash
+python watch_agent_brain.py --checkpoint checkpoints_multi_green_ext/dnlight_green_best --green --delay 1.0
+```
+
+
+---
+
+
+### 4.3 Evaluation & Comparison
+To generate performance metrics and comparison data.
+
+
+**Evaluate a Single Model (Manual GUI Inspection):**
+```bash
+python evaluate_multi.py --checkpoint checkpoints_multi_green_ext/dnlight_green_best --gui --green
+```
+
+
+**Automatic AI-to-AI Comparison:**
+Runs 5 episodes of each model and generates a comparison chart in `results_ai_comparison/`.
+```bash
+python compare_two_ai.py --episodes 5
+```
+
+
+**Baseline vs. Green AI Comparison:**
+Compares the Green AI against a Fixed-Time baseline and generates a comparative report.
+```bash
+python compare_baseline_vs_green.py --episodes 5
+```
+
+
+---
+
+
+## 5. Troubleshooting
+
+
+*   **"No module named 'traci'"**: Ensure you are in the `sumo_drl` conda environment.
+*   **"SUMO_HOME not set"**: This is the most common error. Close and reopen your terminal after setting the environment variable in Windows settings.
+*   **TensorFlow GPU Errors**: If you have a dedicated GPU, ensure CUDA and cuDNN are installed. If not, TensorFlow will automatically default to CPU mode, which is perfectly fine for this project.
+
+
+
